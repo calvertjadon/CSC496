@@ -1,0 +1,6 @@
+08-02-2021, 16:04:47 TombRaider.exe benchmark completed, 4539 frames rendered in 52.828 s
+                     Average framerate  :   85.9 FPS
+                     Minimum framerate  :   29.6 FPS
+                     Maximum framerate  :  187.9 FPS
+                     1% low framerate   :    1.8 FPS
+                     0.1% low framerate :    1.8 FPS
