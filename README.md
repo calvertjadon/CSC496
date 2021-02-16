@@ -13,7 +13,7 @@ Additional sensor data was recording using HWiNFO64 and MSI Afterburner.
  | 02-16-2021 | [benchmark.ini](./Tomb%20Raider/02_16_2021/benchmark003/benchmark.ini) | Windows Power Mode: **High performance** |
  | 02-16-2021 | [benchmark.ini](./Tomb%20Raider/02_16_2021/benchmark002/benchmark.ini) | Windows Power Mode: **High performance** |
  | 02-16-2021 | [benchmark.ini](./Tomb%20Raider/02_16_2021/benchmark001/benchmark.ini) | Windows Power Mode: **Power saver**      |
- | 02-08-2021 | [benchmark.ini](./Tomb%20Raider/benchmark_02-08-2021.ini)              | Windows Power Mode: **High performance** |
+ | 02-08-2021 | [benchmark.ini](./Tomb%20Raider/02_08_2021/benchmark001/benchmark.ini) | Windows Power Mode: **High performance** |
 
 ### [BioShock Infinite](https://2k.com/en-US/game/bioshock-infinite/)
 
