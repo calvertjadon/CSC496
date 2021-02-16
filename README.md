@@ -8,7 +8,12 @@ This game was chosen for two reasons.  The first being that I already owned it a
 
 Additional sensor data was recording using HWiNFO64 and MSI Afterburner.
 
-Settings used in benchmark can be found [here](./Tomb%20Raider/benchmark.ini).
+ | Date       | Settings                                                               | Notes                                    |
+ | ---------- | ---------------------------------------------------------------------- | ---------------------------------------- |
+ | 02-16-2021 | [benchmark.ini](./Tomb%20Raider/02_16_2021/benchmark003/benchmark.ini) | Windows Power Mode: **High performance** |
+ | 02-16-2021 | [benchmark.ini](./Tomb%20Raider/02_16_2021/benchmark002/benchmark.ini) | Windows Power Mode: **High performance** |
+ | 02-16-2021 | [benchmark.ini](./Tomb%20Raider/02_16_2021/benchmark001/benchmark.ini) | Windows Power Mode: **Power saver**      |
+ | 02-08-2021 | [benchmark.ini](./Tomb%20Raider/benchmark_02-08-2021.ini)              | Windows Power Mode: **High performance** |
 
 ### [BioShock Infinite](https://2k.com/en-US/game/bioshock-infinite/)
 
@@ -16,12 +21,26 @@ This game was chosen for similar reasons to Tomb Raider in that I already owned 
 
 Additional sensor data was recording using HWiNFO64 and MSI Afterburner.
 
-Settings used:
-* Quality: UltraDX11_DDOF
-* Aspect ratio: 16:9
-* Resolution: 1920x1080
+ | Date       | Settings                                                                                               | Notes                                    |
+ | ---------- | ------------------------------------------------------------------------------------------------------ | ---------------------------------------- |
+ | 02-08-2021 | [CustomBenchmarkOptions.ini](./BioShock%20Infinite/02_16_2021/benchmark003/CustomBenchmarkOptions.ini) | Windows Power Mode: **High performance** |
+ | 02-08-2021 | [CustomBenchmarkOptions.ini](./BioShock%20Infinite/02_16_2021/benchmark002/CustomBenchmarkOptions.ini) | Windows Power Mode: **High performance** |
+ | 02-08-2021 | [CustomBenchmarkOptions.ini](./BioShock%20Infinite/02_16_2021/benchmark001/CustomBenchmarkOptions.ini) | Windows Power Mode: **Power saver**      |
+ | 02-08-2021 | [settings.txt](/BioShock%20Infinite/02_08_2021/settings.txt)                                           | Windows Power Mode: **High performance** |
 
-### Observations
+## Observations
+
+### 02-16-2021
+
+Three benchmarks were run for each games.  The first benchmark was run at 1080p under the Power saver setting in Windows, the second was run at 1080p with the High performance power setting, and the third was run at 720p with the High performance setting.
+
+Tomb raider saw a 2.38% increase in average FPS at 1080p when using the High performance power plan over the Power saver plan.  Decreasing the resolution from 1080p to 720p led to a 49.52% increase in average FPS.
+
+BioShock Infinite saw a 63.56% increase in average FPS at 1080p when using the High performance power plan over the Power saver plan.  Decreasing the resolution from 1080p to 720p led to a 2.60% increase in average FPS.
+
+These two games seem to be optimized quite differently, as their reactions to the change in settings was opposite.  Tomb raider was not affected much by the power plan, but was heavily impacted by the change in resolution.  BioShock on the other hand was heavily affected by the power plan, but no so much the resolution change.
+
+### 02-08-2021
 
 The Tomb Raider benchmark is actually quite short and I opted to not run it in a loop.  In the beginning of the benchmark, the FPS is at its lowest and the CPU is at its hottest.  After a few seconds, the CPU temperature goes down and the FPS goes up and stabilizes.
 

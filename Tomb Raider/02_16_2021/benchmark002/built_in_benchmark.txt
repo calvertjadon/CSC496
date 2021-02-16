@@ -1,0 +1,44 @@
+
+Benchmark Statistics:
+
+Min FPS: 70.0
+Max FPS: 132.0
+Average FPS: 94.7
+
+
+Quality settings:
+
+RenderAPI = 0
+Fullscreen = 1
+ExclusiveFullscreen = 1
+AspectRatio = 0
+Brightness = 1000
+Contrast = 500
+VSyncMode = 0
+FullscreenWidth = 1920
+FullscreenHeight = 1080
+FullscreenRefreshRate = 60
+AdapterId = 0
+DX11AdapterId = 0
+DX11OutputId = 0
+StereoEnabled = 0
+StereoDepth = 500
+StereoStrength = 500
+TextureQuality = 4
+BestTextureFilter = 3
+HairQuality = 1
+AntiAliasingMode = 1
+ShadowMode = 1
+ShadowResolution = 2
+SSAOMode = 2
+DOFQuality = 2
+ReflectionQuality = 2
+LODScale = 4
+EnablePostProcess = 1
+EnableMotionBlur = 1
+EnableScreenEffects = 1
+EnableHighPrecisionRT = 1
+EnableTessellation = 1
+EnableGDI_Cursor = 1
+
+
