@@ -1,5 +1,6 @@
 # CSC496 Semester Project - Spring 2021
 
+
 ## Games Benchmarked
 
 ### [Tomb Raider (2013)](https://tombraider.fandom.com/wiki/Tomb_Raider_(2013_Game))
@@ -23,9 +24,9 @@ Additional sensor data was recording using HWiNFO64 and MSI Afterburner.
 
  | Date       | Settings                                                                                               | Notes                                    |
  | ---------- | ------------------------------------------------------------------------------------------------------ | ---------------------------------------- |
- | 02-08-2021 | [CustomBenchmarkOptions.ini](./BioShock%20Infinite/02_16_2021/benchmark003/CustomBenchmarkOptions.ini) | Windows Power Mode: **High performance** |
- | 02-08-2021 | [CustomBenchmarkOptions.ini](./BioShock%20Infinite/02_16_2021/benchmark002/CustomBenchmarkOptions.ini) | Windows Power Mode: **High performance** |
- | 02-08-2021 | [CustomBenchmarkOptions.ini](./BioShock%20Infinite/02_16_2021/benchmark001/CustomBenchmarkOptions.ini) | Windows Power Mode: **Power saver**      |
+ | 02-16-2021 | [CustomBenchmarkOptions.ini](./BioShock%20Infinite/02_16_2021/benchmark003/CustomBenchmarkOptions.ini) | Windows Power Mode: **High performance** |
+ | 02-16-2021 | [CustomBenchmarkOptions.ini](./BioShock%20Infinite/02_16_2021/benchmark002/CustomBenchmarkOptions.ini) | Windows Power Mode: **High performance** |
+ | 02-16-2021 | [CustomBenchmarkOptions.ini](./BioShock%20Infinite/02_16_2021/benchmark001/CustomBenchmarkOptions.ini) | Windows Power Mode: **Power saver**      |
  | 02-08-2021 | [settings.txt](/BioShock%20Infinite/02_08_2021/settings.txt)                                           | Windows Power Mode: **High performance** |
 
 ## Observations
@@ -47,6 +48,22 @@ The Tomb Raider benchmark is actually quite short and I opted to not run it in a
 BioShock showed similar results, however the benchmark is much longer.  It is divided up into multiple "scenes" and each scene is about as long as the entire Tomb Raider benchmark.  In the first scene, we see similar FPS fluctuation to what we saw in the first part of the Tomb Raider benchmark.  After the first scene, the FPS stabilizes quite a bit and the CPU temperature drops to around 50 degrees Celsius.
 
 It seems to me like my CPU cooler takes a few seconds to kick in and during that time, the performance is temporarily limited.  After the cooler starts up, however, performance is slightly increased.
+
+## Custom Scripts
+
+### Generate Graph
+
+`$ ./generate_graph.py <folder containing benchmark folders>`
+
+* Looks through the specified folder for `HWiNFO64.CSV` files and plots the FPS columns
+
+Example usage:
+
+Assume `folder1` contains two benchmark folders (`benchmark001`, `benchmark002`), each containing a file called `HWiNFO64.CSV`
+
+If we call `$ ./generate_graph.py folder1`, an `example.png` will be created inside the folder
+
+On the graph, the legend title for each line will be the name of the folder `HWiNFO64.CSV` was found in (`benchmark001`, `benchmark002`)
 
 ## Computer Specifications
 
