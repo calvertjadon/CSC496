@@ -1,0 +1,6 @@
+18-02-2021, 16:26:17 BioShockInfinite.exe benchmark completed, 7919 frames rendered in 78.594 s
+                     Average framerate  :  100.7 FPS
+                     Minimum framerate  :   59.8 FPS
+                     Maximum framerate  :  143.7 FPS
+                     1% low framerate   :   56.6 FPS
+                     0.1% low framerate :   24.7 FPS
