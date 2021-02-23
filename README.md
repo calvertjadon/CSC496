@@ -40,7 +40,7 @@ Repeated benchmarks from 02-16-2021 with same settings.  I realized when graphin
 
 gnuplot file used to generate these graphs can be found [here](./gnu.plot).
 
-A [temporary Python script](./generate_graph.py) was used to manipulate the data into a graphable form using: [find](https://en.wikipedia.org/wiki/Find_(Unix)), [awk](https://en.wikipedia.org/wiki/AWK), and [paste](https://en.wikipedia.org/wiki/Paste_(Unix)).
+A [temporary Python script](#generate-graph-python-script) was used to manipulate the data into a graphable form using: [find](https://en.wikipedia.org/wiki/Find_(Unix)), [awk](https://en.wikipedia.org/wiki/AWK), and [paste](https://en.wikipedia.org/wiki/Paste_(Unix)).
 
 ### 02-16-2021
 
@@ -60,9 +60,7 @@ BioShock showed similar results, however the benchmark is much longer.  It is di
 
 It seems to me like my CPU cooler takes a few seconds to kick in and during that time, the performance is temporarily limited.  After the cooler starts up, however, performance is slightly increased.
 
-## Custom Scripts
-
-### Generate Graph
+## Generate Graph Python Script
 
 `$ ./generate_graph.py <folder containing benchmark folders>`
 
@@ -72,7 +70,7 @@ Example usage:
 
 Assume `folder1` contains two benchmark folders (`benchmark001`, `benchmark002`), each containing a file called `HWiNFO64.CSV`
 
-If we call `$ ./generate_graph.py folder1`, an `example.png` will be created inside the folder
+If we call `$ ./generate_graph.py folder1`, an `plot.png` will be created inside the folder
 
 On the graph, the legend title for each line will be the name of the folder `HWiNFO64.CSV` was found in (`benchmark001`, `benchmark002`)
 
