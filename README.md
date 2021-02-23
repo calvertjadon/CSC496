@@ -31,6 +31,17 @@ Additional sensor data was recording using HWiNFO64 and MSI Afterburner.
 
 ## Observations
 
+### 02-18-2021
+
+![Line Graph TR](./Tomb%20Raider/02_18_2021/plot.png)
+![Line Graph BS](./BioShock%20Infinite/02_18_2021/plot.png)
+
+Repeated benchmarks from 02-16-2021 with same settings.  I realized when graphing that the original data was not very consistent and in order to improve consistency, I am now starting and stopping the data logging using specific visual landmarks in each game.
+
+gnuplot file used to generate these graphs can be found [here](./gnu.plot).
+
+A [temporary Python script](./generate_graph.py) was used to manipulate the data into a graphable form using: [find](https://en.wikipedia.org/wiki/Find_(Unix)), [awk](https://en.wikipedia.org/wiki/AWK), and [paste](https://en.wikipedia.org/wiki/Paste_(Unix)).
+
 ### 02-16-2021
 
 Three benchmarks were run for each games.  The first benchmark was run at 1080p under the Power saver setting in Windows, the second was run at 1080p with the High performance power setting, and the third was run at 720p with the High performance setting.
