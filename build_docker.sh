@@ -1,0 +1,1 @@
+docker build -t calvertjadon/nginx-plot -f docker/Dockerfile .

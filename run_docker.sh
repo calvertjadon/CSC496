@@ -1,0 +1,1 @@
+docker run --rm   --name nginx-plot -d -p 8080:80 calvertjadon/nginx-plot
