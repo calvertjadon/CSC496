@@ -1,0 +1,3 @@
+1. Double-click on "run_cinebench.ahk".
+2. You will be prompted to locate your CinebenchR23 installation directory.  
+3. After the benchmarks have completed, a file named "output.txt" will be generated in the CinebenchR23 installation directory.

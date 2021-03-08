@@ -1,0 +1,4 @@
+Cinebench R23 Multi core Score: 8873.43
+Cinebench R23 Single core Score: 1240.15
+Number of Cores in This Machine: 6
+Cinebench R23 Estimated Single Core: 1478.91
