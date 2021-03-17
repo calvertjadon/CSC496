@@ -60,7 +60,19 @@ BioShock showed similar results, however the benchmark is much longer.  It is di
 
 It seems to me like my CPU cooler takes a few seconds to kick in and during that time, the performance is temporarily limited.  After the cooler starts up, however, performance is slightly increased.
 
-## Generate Graph Python Script
+## Cinebench Benchmarking Script (AutoHotKey)
+
+[autohotkey/run_cinebench.ahk](./autohotkey/run_cinebench.ahk) is an AutoHotKey script that invokes both a single-core and multi-score Cinebench run.  Upon launching the script, you will be prompted to locate the Cinebench install directory.  Once the directory has been located, the benchmarks will begin.  The benchmark results are stored in `$CinebenchDir\output.txt`.
+
+## Benchmark Output-Testing Script (Powershell)
+
+[autohotkey/check_results.ps1](./autohotkey/check_results.ps1) is a PowerShell script that will make sure that the output of the AutoHotKey Cinebench script is in the correct format.  To run the script, run the following in a PowerShell terminal:
+
+```PowerShell
+> .\check_results.ps1 -FilePath path\to\output.txt
+```
+
+## Generate Graph Script (Python)
 
 `$ ./generate_graph.py <folder containing benchmark folders>`
 
