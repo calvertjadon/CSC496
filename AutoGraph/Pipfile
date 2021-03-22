@@ -4,9 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+pandas = "*"
+numpy = "*"
+matplotlib = "*"
 
 [dev-packages]
 ipython = "*"
+autopep8 = "*"
 
 [requires]
 python_version = "3.9"

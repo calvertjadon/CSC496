@@ -10,7 +10,7 @@
                      Maximum framerate  :  118.5 FPS
                      1% low framerate   :   75.1 FPS
                      0.1% low framerate :   67.1 FPS
-10-03-10-03-2021, 14:06:22 HorizonZeroDawn.exe benchmark completed, 20885 frames rendered in 178.515 s 1080 stock
+10-03-2021, 14:06:22 HorizonZeroDawn.exe benchmark completed, 20885 frames rendered in 178.515 s 1080 stock
                      Average framerate  :  116.9 FPS
                      Minimum framerate  :   85.7 FPS
                      Maximum framerate  :  151.9 FPS

@@ -22,8 +22,10 @@ def __get_subdirs(abs_path: str) -> list[str]:
 
 def load_configurations(abs_path: str) -> list[Configuration]:
     configs: list[Configuration] = []
+    # (game, cpu, graphics) -> gpu -> resolution -> sensor -> data
+    benchmarks: dict[str, dict[str, dict[str, dict[str, str]]]] = {}
 
-    processors = __get_subdirs(abs_path)
+    processors = list(filter(lambda f: f != "graph", __get_subdirs(abs_path)))
     for cpu in processors:
         cpu_path = os.path.join(abs_path, cpu)
 
@@ -31,51 +33,50 @@ def load_configurations(abs_path: str) -> list[Configuration]:
         for gpu in graphics_cards:
             gpu_path = os.path.join(cpu_path, gpu)
 
-            benchmarks = {}
+            config = Configuration(cpu, gpu)
+            configs.append(config)
+
             benchmark_path = os.path.join(gpu_path, "Benchmark.txt")
             with open(benchmark_path, "r") as f:
                 # 10-03-2021, 12:30:09
                 # first 20 chars
 
-                # line = f.readline()
-
-                # lines = list(filter(lambda line: line != "\n", f.readlines()))
-                lines = list(filter(lambda line: line != "",
-                                    [line.strip() for line in f.readlines()]
-                                    ))
+                lines = list(
+                    filter(
+                        lambda line: line != "",
+                        [line.strip() for line in f.readlines()]
+                    )
+                )
 
                 STEP = 6
                 for i in range(0, len(lines), STEP):
-                    # header
-                    # print(lines[i])
-
-                    dt = datetime.strptime(
-                        lines[i][:20],
-                        "%d-%m-%Y, %H:%M:%S"
-                    ).strftime("%m/%d/%Y")
+                    # 12-03-2021, 11:14:20 HorizonZeroDawn.exe benchmark completed, 8579 frames rendered in 173.234 s 4k stock
+                    # data needed at this level: game, cpu, resolution, graphics
 
                     game = lines[i].split(
                         " "
-                    )[2].replace(".exe", "")
-                    print(game, dt)
+                    )[2].strip().replace(".exe", "")
+
+                    resolution, graphics = lines[i].split()[-2:]
 
                     # data
                     for j in range(i+1, i + STEP):
-                        print(lines[j])
+                        # print(lines[j])
+                        sensor, data = [s.strip() for s in lines[j].split(":")]
+                        # print(sensor, data)
 
-                # for line in f.readlines():
-                #     try:
-                #
+                        # (game, cpu, graphics) -> gpu -> resolution -> sensor -> data
+                        benchmarks.setdefault(
+                            (game, cpu, graphics),
+                            {}
+                        )
+                        benchmarks[(game, cpu, graphics)].setdefault(gpu, {})
+                        benchmarks[(game, cpu, graphics)][gpu].setdefault(
+                            resolution,
+                            {}
+                        )
+                        benchmarks[(game, cpu, graphics)][gpu][resolution][sensor] = float(
+                            data.split()[0]
+                        )
 
-                #         bnckmrk["game"] = line.split(
-                #             " "
-                #         )[2].replace(".exe", "")
-
-                #         bnckmrk["timestamp"] = dt
-
-                #         while
-
-                #     except ValueError:
-                #         pass
-
-    return configs
+    return benchmarks
