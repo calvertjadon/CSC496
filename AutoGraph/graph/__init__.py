@@ -1,11 +1,5 @@
 import os
 
-from pprint import pprint
-from datetime import datetime
-
-from graph.Benchmark import Benchmark
-from graph.Configuration import Configuration
-
 """
 Write a script in the language of your choice to extract the benchmarks from these folders and graph them by game and GPU.
 So for example Borderlands 3 is tested at 3 different resolutions on both GPUs.
@@ -20,66 +14,92 @@ def __get_subdirs(abs_path: str) -> list[str]:
     return next(os.walk(abs_path))[1]
 
 
-def load_configurations(abs_path: str) -> list[Configuration]:
-    configs: list[Configuration] = []
-    # (game, cpu, graphics) -> gpu -> resolution -> sensor -> data
-    benchmarks: dict[str, dict[str, dict[str, dict[str, str]]]] = {}
+def load_benchmark_data() -> dict[str, dict[str, dict[str, dict[str, dict[str, float]]]]]:
 
-    processors = list(filter(lambda f: f != "graph", __get_subdirs(abs_path)))
+    abs_path = os.getcwd()
+    FOLDERS_TO_IGNORE = ["graph", "__pycache__",
+                         "matplotlib_examples", ".vscode", "images"]
+
+    # cpus
+    processors = list(filter(
+        lambda f: f not in FOLDERS_TO_IGNORE,
+        __get_subdirs(abs_path)
+    ))
+
+    # gpus
+    configs = []
     for cpu in processors:
-        cpu_path = os.path.join(abs_path, cpu)
+        cpu_folder_path = os.path.join(
+            abs_path,
+            cpu
+        )
 
-        graphics_cards = __get_subdirs(cpu_path)
-        for gpu in graphics_cards:
-            gpu_path = os.path.join(cpu_path, gpu)
+        gpus = __get_subdirs(cpu_folder_path)
+        configs.extend([
+            (cpu, gpu) for gpu in gpus
+        ])
 
-            config = Configuration(cpu, gpu)
-            configs.append(config)
+    # print(configs)
 
-            benchmark_path = os.path.join(gpu_path, "Benchmark.txt")
-            with open(benchmark_path, "r") as f:
-                # 10-03-2021, 12:30:09
-                # first 20 chars
+    BENCHMARK_FILE_NAME = "Benchmark.txt"
 
-                lines = list(
-                    filter(
-                        lambda line: line != "",
-                        [line.strip() for line in f.readlines()]
-                    )
+    benchmarks = {}
+    resolutions = set()
+    resolution_mappings = {
+        "HD": (1280, 720),
+        "FHD": (1920, 1080),
+        "QHD": (2560, 1440),
+        "UHD": (3840, 2160),
+        "4K": (3840, 2160),
+        "8K": (7680, 4320)
+    }
+
+    # read benchmark file for each configuration
+    for cpu, gpu in configs:
+        benchmark_file_path = os.path.join(
+            abs_path,
+            cpu,
+            gpu,
+            BENCHMARK_FILE_NAME
+        )
+        # print(benchmark_file_path)
+
+        with open(benchmark_file_path, "r") as f:
+            # remove empty lines
+            lines = list(
+                filter(
+                    lambda line: line != "",
+                    [line.strip() for line in f.readlines()]
                 )
+            )
 
-                STEP = 6
-                for i in range(0, len(lines), STEP):
-                    # 12-03-2021, 11:14:20 HorizonZeroDawn.exe benchmark completed, 8579 frames rendered in 173.234 s 4k stock
-                    # data needed at this level: game, cpu, resolution, graphics
+            STEP = 6  # header row every n rows, n-1 data rows follow
+            for i in range(0, len(lines), STEP):
+                # extract data from header
+                game = lines[i]\
+                    .split(" ")[2]\
+                    .strip()\
+                    .replace(".exe", "")
 
-                    game = lines[i].split(
-                        " "
-                    )[2].strip().replace(".exe", "")
+                resolution, graphics = lines[i].split()[-2:]
 
-                    resolution, graphics = lines[i].split()[-2:]
+                mapping = resolution_mappings.get(resolution.upper())
+                if mapping:
+                    resolution = f"{mapping[1]}"
 
-                    if resolution.upper() == "4K":
-                        resolution = "2160"
+                resolutions.add(resolution)
 
-                    # data
-                    for j in range(i+1, i + STEP):
-                        # print(lines[j])
-                        sensor, data = [s.strip() for s in lines[j].split(":")]
-                        # print(sensor, data)
+                benchmarks.setdefault((cpu, game, graphics), {})
+                benchmarks[(cpu, game, graphics)].setdefault(gpu, {})
+                benchmarks[(cpu, game, graphics)][gpu].setdefault(
+                    resolution, {})
 
-                        # (game, cpu, graphics) -> gpu -> resolution -> sensor -> data
-                        benchmarks.setdefault(
-                            (game, cpu, graphics),
-                            {}
-                        )
-                        benchmarks[(game, cpu, graphics)].setdefault(gpu, {})
-                        benchmarks[(game, cpu, graphics)][gpu].setdefault(
-                            resolution,
-                            {}
-                        )
-                        benchmarks[(game, cpu, graphics)][gpu][resolution][sensor] = float(
-                            data.split()[0]
-                        )
+                # benchmark data
+                for j in range(i+1, i + STEP):
+                    sensor, data = [s.strip() for s in lines[j].split(":")]
+                    benchmarks[(cpu, game, graphics)
+                               ][gpu][resolution][sensor] = float(
+                        data.split()[0]
+                    )
 
     return benchmarks
