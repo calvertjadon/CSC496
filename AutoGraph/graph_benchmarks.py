@@ -9,7 +9,10 @@ IMAGES_FOLDER = os.path.join(
     "images"
 )
 
-shutil.rmtree(IMAGES_FOLDER)
+try:
+    shutil.rmtree(IMAGES_FOLDER)
+except FileNotFoundError:
+    pass
 os.mkdir(IMAGES_FOLDER)
 
 data = load_benchmark_data()
