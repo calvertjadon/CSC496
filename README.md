@@ -60,6 +60,21 @@ BioShock showed similar results, however the benchmark is much longer.  It is di
 
 It seems to me like my CPU cooler takes a few seconds to kick in and during that time, the performance is temporarily limited.  After the cooler starts up, however, performance is slightly increased.
 
+## Module 9 AutoGraph Script (Python)
+
+### Prerequisites
+
+- Python 3.9.0+
+- pipenv
+
+### Setup
+
+`cd` into the `AutoGraph` folder and run `$ pipenv install`.  This will create a virtual python environment (venv) and install the necessary dependencies.
+
+### Usage
+
+Once the venv has been created, run `$ pipenv run python graph_benchmarks.py`.  The resulting graphs will be placed in `AutoGraph/images`.
+
 ## Cinebench Benchmarking Script (AutoHotKey)
 
 [autohotkey/run_cinebench.ahk](./autohotkey/run_cinebench.ahk) is an AutoHotKey script that invokes both a single-core and multi-score Cinebench run.  Upon launching the script, you will be prompted to locate the Cinebench install directory.  Once the directory has been located, the benchmarks will begin.  The benchmark results are stored in `$CinebenchDir\output.txt`.
