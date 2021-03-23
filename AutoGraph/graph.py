@@ -1,6 +1,10 @@
+from plot import plot_avg_fps_graph
 import os
 import argparse
+import shutil
 from pprint import pprint
+
+from matplotlib.pyplot import plot
 from graph import load_configurations
 
 
@@ -52,61 +56,84 @@ configs = load_configurations(directory_abs)
                                                           'Minimum framerate': 62.6}}}}
 """
 
-# for config in configs.keys():
-#     pprint(configs[config])
+IMAGES_FOLDER = os.path.join(
+    os.getcwd(),
+    "images"
+)
 
-# game, cpu, graphics = config
-# for gpu in configs[config].keys():
-#     for resolution in configs[config][gpu].keys():
-#         avg_fps = configs[config][gpu][resolution]
-#         print([game, graphics, resolution, gpu, avg_fps])
+shutil.rmtree(IMAGES_FOLDER)
+
+os.mkdir(IMAGES_FOLDER)
+
+for config in configs.keys():
+    game, cpu, graphics = config
+    benchmark = configs[config]
+    plot_avg_fps_graph(*config, benchmark)
+    # print(config, benchmark, "\n")
 
 
-horizon_stock = {
-    'Reference 6700XT': {
-        '1080': {
-            '0.1% low framerate': 78.4,
-            '1% low framerate': 86.0,
-            'Average framerate': 116.9,
-            'Maximum framerate': 151.9,
-            'Minimum framerate': 85.7
-        },
-        '1440': {
-            '0.1% low framerate': 69.2,
-            '1% low framerate': 72.9,
-            'Average framerate': 94.7,
-            'Maximum framerate': 132.9,
-            'Minimum framerate': 72.9
-        },
-        '4K': {
-            '0.1% low framerate': 39.2,
-            '1% low framerate': 40.4,
-            'Average framerate': 49.3,
-            'Maximum framerate': 61.1,
-            'Minimum framerate': 40.1
-        }
-    },
-    'Sapphire 6700XT': {
-        '1080': {
-            '0.1% low framerate': 77.3,
-            '1% low framerate': 83.6,
-            'Average framerate': 113.5,
-            'Maximum framerate': 148.1,
-            'Minimum framerate': 83.7
-        },
-        '1440': {
-            '0.1% low framerate': 67.7,
-            '1% low framerate': 71.3,
-            'Average framerate': 92.5,
-            'Maximum framerate': 112.7,
-            'Minimum framerate': 71.1
-        },
-        '4k': {
-            '0.1% low framerate': 38.1,
-            '1% low framerate': 40.7,
-            'Average framerate': 49.5,
-            'Maximum framerate': 61.7,
-            'Minimum framerate': 40.7
-        }
-    }
-}
+# horizon_stock = {
+#     'Reference 6700XT': {
+#         '1080': {
+#             '0.1% low framerate': 78.4,
+#             '1% low framerate': 86.0,
+#             'Average framerate': 116.9,
+#             'Maximum framerate': 151.9,
+#             'Minimum framerate': 85.7
+#         },
+#         '1440': {
+#             '0.1% low framerate': 69.2,
+#             '1% low framerate': 72.9,
+#             'Average framerate': 94.7,
+#             'Maximum framerate': 132.9,
+#             'Minimum framerate': 72.9
+#         },
+#         '4K': {
+#             '0.1% low framerate': 39.2,
+#             '1% low framerate': 40.4,
+#             'Average framerate': 49.3,
+#             'Maximum framerate': 61.1,
+#             'Minimum framerate': 40.1
+#         }
+#     },
+#     'Sapphire 6700XT': {
+#         '1080': {
+#             '0.1% low framerate': 77.3,
+#             '1% low framerate': 83.6,
+#             'Average framerate': 113.5,
+#             'Maximum framerate': 148.1,
+#             'Minimum framerate': 83.7
+#         },
+#         '1440': {
+#             '0.1% low framerate': 67.7,
+#             '1% low framerate': 71.3,
+#             'Average framerate': 92.5,
+#             'Maximum framerate': 112.7,
+#             'Minimum framerate': 71.1
+#         },
+#         '4k': {
+#             '0.1% low framerate': 38.1,
+#             '1% low framerate': 40.7,
+#             'Average framerate': 49.5,
+#             'Maximum framerate': 61.7,
+#             'Minimum framerate': 40.7
+#         }
+#     }
+# }
+
+
+# reference = horizon_stock["Reference 6700XT"]
+# sapphire = horizon_stock["Sapphire 6700XT"]
+
+# reference_avgs = [
+#     resolution["Average framerate"]
+#     for resolution in reference.values()
+# ]
+# sapphire_avgs = [
+#     resolution["Average framerate"]
+#     for resolution in sapphire.values()
+# ]
+
+# resolutions = list(reference.keys())
+# plot_avg_fps_graph(game="HorizonZeroDawn", resolutions=resolutions, gpu1_name="Reference 6700XT",
+#                    gpu2_name="Sapphire 6700XT", gpu1_avgs=reference_avgs, gpu2_avgs=sapphire_avgs, cpu="5950x", graphics="stock")

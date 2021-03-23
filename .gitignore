@@ -10,7 +10,8 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -222,3 +223,4 @@ $RECYCLE.BIN/
 frames/
 *.tmp
 *.lnk
+*/.vscode/settings.json

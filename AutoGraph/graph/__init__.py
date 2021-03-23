@@ -59,6 +59,9 @@ def load_configurations(abs_path: str) -> list[Configuration]:
 
                     resolution, graphics = lines[i].split()[-2:]
 
+                    if resolution.upper() == "4K":
+                        resolution = "2160"
+
                     # data
                     for j in range(i+1, i + STEP):
                         # print(lines[j])
