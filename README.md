@@ -1,5 +1,6 @@
 # CSC496 Semester Project - Spring 2021
 
+https://calvertjadon.github.io/CSC496-GHPages/
 
 ## Games Benchmarked
 
